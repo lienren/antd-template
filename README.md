@@ -1,4 +1,4 @@
-# antd-demo
+# antd-template
 
 > A Vue.js project
 

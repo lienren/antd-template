@@ -1,6 +1,6 @@
 <template>
-  <a-layout-sider :trigger="null" collapsible v-model="icollapsed" :style="{ position: 'relative' }">
-    <div class="logo">{{icollapsed?shortLogoName:logoName}}
+  <a-layout-sider :trigger="null" collapsible v-model="collapsed" :style="{ position: 'relative' }">
+    <div class="logo">{{collapsed?shortLogoName:logoName}}
       <span>{{version}}</span>
     </div>
     <a-menu theme="dark" mode="inline" :defaultOpenKeys="defaultOpenKeys" :defaultSelectedKeys="defaultSelectedKeys" @select="select">
@@ -51,15 +51,10 @@ export default {
   },
   components: {},
   data () {
-    return {
-      icollapsed: this.collapsed
-    }
+    return { }
   },
   watch: {
     collapsed (val) {
-      this.icollapsed = val
-    },
-    icollapsed (val) {
       this.$emit('update:collapsed', val)
     }
   },
@@ -84,10 +79,10 @@ export default {
       return this.rountKey === '' ? [] : [this.rountKey]
     },
     menuSwitchText () {
-      return this.icollapsed ? '打开菜单' : '收起菜单'
+      return this.collapsed ? '打开菜单' : '收起菜单'
     },
     menuSwitchClassName () {
-      return this.icollapsed ? 'menu-unfold' : 'menu-fold'
+      return this.collapsed ? 'menu-unfold' : 'menu-fold'
     }
   },
   created () { },
@@ -108,8 +103,8 @@ export default {
       this.$emit('logout')
     },
     collapse () {
-      this.icollapsed = !this.icollapsed
-      this.$emit('collapse', this.icollapsed)
+      this.collapsed = !this.collapsed
+      this.$emit('collapse', this.collapsed)
     },
     select (selected) {
       this.$emit('select', selected)

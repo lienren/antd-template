@@ -81,7 +81,10 @@ export default {
           icon: 'reload',
           text: '刷新',
           click: () => {
-            this.$message.info('点新刷新')
+            this.$message.success('刷新成功!')
+            this.fetch({
+              ...this.pagination
+            })
           }
         },
         {
@@ -89,7 +92,10 @@ export default {
           icon: 'to-top',
           text: '清空',
           click: () => {
-            this.$message.info('点击清空')
+            this.$message.success('搜索条件清空成功!')
+            this.fetch({
+              ...this.pagination
+            })
           }
         },
         {

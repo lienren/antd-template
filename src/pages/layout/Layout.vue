@@ -1,6 +1,6 @@
 <template>
   <a-layout class="layout-main">
-    <sidebar :menus="menus" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" @init="menuInit" @logout="logout" @collapse="menuCollapse" @select="menuSelect" @update:collapsed="val => collapsed = val"></sidebar>
+    <sidebar :menus="menus" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" @init="menuInit" @logout="logout" @collapse="menuCollapse" @select="menuSelect"></sidebar>
     <a-layout :style="{ padding:'0 16px', height: '100%', overflow: 'hidden' }">
       <app-header :crumbs="crumbs" :badgeNumber="badgeNumber" @clickheadimg="() => cardIsShow = !cardIsShow"></app-header>
       <a-layout-content :style="{ height: mainHeight }">
@@ -8,7 +8,7 @@
       </a-layout-content>
       <app-footer></app-footer>
     </a-layout>
-    <app-card :show="cardIsShow" @update:show="val => cardIsShow = val"></app-card>
+    <app-card :show.sync="cardIsShow"></app-card>
   </a-layout>
 </template>
 

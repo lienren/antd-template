@@ -16,6 +16,13 @@ module.exports = {
         pathRewrite: {
           '^/demoApi': ''
         }
+      },
+      '/ueditor': {
+        target: 'http://localhost:8888/ueditor/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/ueditor': ''
+        }
       }
     },
 

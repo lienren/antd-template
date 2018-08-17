@@ -17,15 +17,11 @@ export default {
   data () {
     return {
       cardClass: ['layout-card'],
-      cardStyle: {},
-      ishow: this.show
+      cardStyle: {}
     }
   },
   watch: {
     show (val) {
-      this.ishow = val
-    },
-    ishow (val) {
       if (val) {
         this.cardClass = ['layout-card', 'animated', 'fadeInRight', 'faster']
         this.cardStyle = { display: 'block' }
@@ -41,7 +37,7 @@ export default {
   mounted () { },
   methods: {
     close () {
-      this.ishow = !this.ishow
+      this.show = !this.show
     }
   }
 }

@@ -71,7 +71,7 @@ export default {
           this.loginButtonType = 'danger'
         } else {
           // 路由跳转
-          this.$router.push({ path: '/main' })
+          this.$router.push({ path: '/dashboard' })
         }
       }, 10000)
     }

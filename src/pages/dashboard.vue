@@ -14,7 +14,19 @@ export default {
   computed: {},
   created () { },
   beforeDestroy () { },
-  mounted () { },
-  methods: {}
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  },
+  methods: {
+    init () {
+      this.$loading.show({ text: '加载中' })
+
+      setTimeout(() => {
+        this.$loading.hide()
+      }, 3000)
+    }
+  }
 }
 </script>

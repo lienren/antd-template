@@ -1,10 +1,10 @@
 <template>
-  <div v-show='show' class="i-toas-mask">
-    <div class='i-toast-contain'>
+  <div v-show='show' class="i-loading-mask">
+    <div class='i-loadingt-contain'>
       <div class='weui_mask_transparent'></div>
       <div class='center-container is-table'>
         <div class='table-cell'>
-          <div class='center-block' id='iToastDiv'>
+          <div class='center-block' id='iLoadingDiv'>
             <img src="./loading.svg" style="width:40px;margin-bottom:5px;" />
             <div>{{text}}</div>
           </div>
@@ -14,7 +14,7 @@
   </div>
 </template>
 <style lang="less" rel="stylesheet/less">
-  .i-toas-mask {
+  .i-loading-mask {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -25,7 +25,7 @@
     z-index: 5000;
     background: rgba(255, 255, 255, 0.4);
   }
-  .i-toast-contain {
+  .i-loadingt-contain {
     position: fixed;
     top: e('calc(50% - 100px)');
     width: 100%;
@@ -96,7 +96,7 @@ export default {
     show (val) {
       if (val) {
         this.$nextTick(() => {
-          let modal = document.getElementById('iToastDiv')
+          let modal = document.getElementById('iLoadingDiv')
           let size = textSize(this.text)
           if (size.width + 12 * 2 < modal.offsetWidth && modal.offsetWidth) {
             modal.style.width = (size.width + 40) + 'px'
@@ -107,7 +107,7 @@ export default {
           addClass(modal, 'modal-in')
         })
       } else {
-        let modal = document.getElementById('iToastDiv')
+        let modal = document.getElementById('iLoadingDiv')
         removeClass(modal, 'modal-in')
         addClass(modal, 'modal-out')
         setTimeout(() => {

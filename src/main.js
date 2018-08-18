@@ -2,7 +2,7 @@
  * @Author: Lienren
  * @Date: 2018-08-13 22:29:12
  * @Last Modified by: Lienren
- * @Last Modified time: 2018-08-18 19:03:48
+ * @Last Modified time: 2018-08-18 23:31:11
  */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -13,7 +13,7 @@ import UtilsPlugin from './assets/utils'
 import App from './App'
 import router from './router'
 import NProgress from 'nprogress' // progress bar
-import ToastPlugin from './plugs/toast/index'
+import LoadingPlugin from './plugs/loading/index'
 import 'nprogress/nprogress.css' // progress bar style
 import './styles/index.scss' // global css
 import './styles/animate.css' // animate css
@@ -22,7 +22,7 @@ Vue.config.productionTip = false
 
 Vue.use(Antd)
 Vue.use(UtilsPlugin)
-Vue.use(ToastPlugin)
+Vue.use(LoadingPlugin)
 
 router.beforeEach((to, from, next) => {
   NProgress.start() // start progress bar

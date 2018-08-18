@@ -1,18 +1,18 @@
-import ToastComponent from './iToast.vue'
+import LoadingComponent from './iLoading.vue'
 
 let $vm
 let watcher
 
 export default {
   install (vue, options) {
-    const Toast = vue.extend(ToastComponent)
+    const Loading = vue.extend(LoadingComponent)
     if (!$vm) {
-      $vm = new Toast({
+      $vm = new Loading({
         el: document.createElement('div')
       })
       document.body.appendChild($vm.$el)
     }
-    const toast = {
+    const loading = {
       show (options = {}) {
         // destroy watcher
         watcher && watcher()
@@ -36,19 +36,6 @@ export default {
       }
     }
 
-    vue.prototype.$toast = toast
-    // all Vux's plugins are included in this.$vux
-    /* if (!vue.$vux) {
-      vue.$vux = {
-        toast
-      }
-    } else {
-      vue.$vux.toast = toast
-    }
-    vue.mixin({
-      created: function () {
-        this.$vux = vue.$vux
-      }
-    }) */
+    vue.prototype.$loading = loading
   }
 }

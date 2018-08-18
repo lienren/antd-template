@@ -1,6 +1,6 @@
 <template>
   <div>
-    首页
+    管理员管理
   </div>
 </template>
 
@@ -14,7 +14,15 @@ export default {
   computed: {},
   created () { },
   beforeDestroy () { },
-  mounted () { },
-  methods: {}
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  },
+  methods: {
+    init () {
+
+    }
+  }
 }
 </script>

@@ -70,7 +70,7 @@ export default {
   methods: {
     init () { },
     handleTableChange (pagination, filters, sorter) {
-      this.$emit('change', { pagination, filters, sorter })
+      this.$emit('on-change', { pagination, filters, sorter })
     }
   }
 }

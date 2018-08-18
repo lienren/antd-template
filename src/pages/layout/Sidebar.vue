@@ -51,7 +51,7 @@ export default {
   },
   components: {},
   data () {
-    return { }
+    return {}
   },
   watch: {
     collapsed (val) {
@@ -94,20 +94,20 @@ export default {
   },
   methods: {
     init () {
-      this.$emit('init', {
+      this.$emit('on-init', {
         defaultOpenKeys: this.defaultOpenKeys,
         defaultSelectedKeys: this.defaultSelectedKeys
       })
     },
     logout () {
-      this.$emit('logout')
+      this.$emit('on-logout')
     },
     collapse () {
-      this.collapsed = !this.collapsed
-      this.$emit('collapse', this.collapsed)
+      this.$emit('update:collapsed', !this.collapsed)
+      this.$emit('on-collapse', this.collapsed)
     },
     select (selected) {
-      this.$emit('select', selected)
+      this.$emit('on-select', selected)
     }
   }
 }

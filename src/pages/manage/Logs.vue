@@ -1,6 +1,6 @@
 <template>
   <div>
-    首页
+    日志管理
   </div>
 </template>
 

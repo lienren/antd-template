@@ -1,8 +1,8 @@
 <template>
   <a-layout class="layout-main">
-    <sidebar :menus="menus" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" @init="menuInit" @logout="logout" @collapse="menuCollapse" @select="menuSelect"></sidebar>
+    <sidebar :menus="menus" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" :collapsed.sync="collapsed" @on-init="menuInit" @on-logout="logout" @on-collapse="menuCollapse" @on-select="menuSelect"></sidebar>
     <a-layout :style="{ padding:'0 16px', height: '100%', overflow: 'hidden' }">
-      <app-header :crumbs="crumbs" :badgeNumber="badgeNumber" @clickheadimg="() => cardIsShow = !cardIsShow"></app-header>
+      <app-header :crumbs="crumbs" :badgeNumber="badgeNumber" @on-clickhead="clickHead" @on-clicksetting="clickSetting"></app-header>
       <a-layout-content :style="{ height: mainHeight }">
         <app-main></app-main>
       </a-layout-content>
@@ -22,29 +22,33 @@ export default {
       logoName: '管理平台',
       shortLogoName: '平台',
       version: 'Beta1.0.3',
+      collapsed: false,
       menus: [
         {
           id: '/dashboard',
           name: '首页',
-          icon: 'user'
-        },
-        {
-          id: '/login',
-          name: '登录',
-          icon: 'login'
+          icon: 'desktop'
         },
         {
           id: '/lists',
-          name: '列表功能',
-          icon: 'bars',
+          name: '系统管理',
+          icon: 'setting',
           children: [
             {
-              id: '/list',
-              name: '列表功能'
+              id: '/managelist',
+              name: '管理员管理'
             },
             {
-              id: '/create',
-              name: '新增功能'
+              id: '/rolelist',
+              name: '角色管理'
+            },
+            {
+              id: '/menulist',
+              name: '菜单管理'
+            },
+            {
+              id: '/logs',
+              name: '日志查看'
             }
           ]
         }
@@ -72,7 +76,8 @@ export default {
   },
   methods: {
     logout () {
-      this.$message.warning('警告：您正在准备退出系统！')
+      // 路由跳转
+      this.$router.push({ path: '/login' })
     },
     menuInit (data) {
       // 设置面包屑名称
@@ -117,6 +122,13 @@ export default {
           }
         })
       }
+    },
+    clickHead () {
+      this.$message.success('点击头像!')
+      this.cardIsShow = !this.cardIsShow
+    },
+    clickSetting () {
+      this.$message.success('点击设置按钮!')
     }
   }
 }

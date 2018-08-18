@@ -1,13 +1,13 @@
 <template>
   <div>
-    <iTable :btns="buttons" :actionBtns="actionButtons" :columns="columns" :data="data" :pagination="pagination" :height="tableHeight" @change="handleTableChange"></iTable>
+    <iTable :btns="buttons" :actionBtns="actionButtons" :columns="columns" :data="data" :pagination="pagination" :height="tableHeight" @on-change="handleTableChange"></iTable>
   </div>
 </template>
 
 <script>
 
-import { iTable } from '../components/'
-import api from '../api/demo'
+import { iTable } from '../../components/'
+import api from '../../api/demo'
 
 export default {
   components: {

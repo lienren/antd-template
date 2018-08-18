@@ -37,7 +37,7 @@ export default {
   mounted () { },
   methods: {
     close () {
-      this.show = !this.show
+      this.$emit('update:show', !this.show)
     }
   }
 }

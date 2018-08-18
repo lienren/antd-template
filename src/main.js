@@ -2,7 +2,7 @@
  * @Author: Lienren
  * @Date: 2018-08-13 22:29:12
  * @Last Modified by: Lienren
- * @Last Modified time: 2018-08-18 23:31:11
+ * @Last Modified time: 2018-08-18 23:35:38
  */
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -10,10 +10,10 @@ import Vue from 'vue'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import UtilsPlugin from './assets/utils'
+import LoadingPlugin from './plugs/loading'
 import App from './App'
 import router from './router'
 import NProgress from 'nprogress' // progress bar
-import LoadingPlugin from './plugs/loading/index'
 import 'nprogress/nprogress.css' // progress bar style
 import './styles/index.scss' // global css
 import './styles/animate.css' // animate css

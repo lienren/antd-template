@@ -2,10 +2,10 @@
  * @Author: Lienren
  * @Date: 2018-08-13 22:29:12
  * @Last Modified by: Lienren
- * @Last Modified time: 2018-08-18 23:35:38
+ * @Last Modified time: 2018-08-19 10:24:06
  */
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+'use strict'
+
 import Vue from 'vue'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'

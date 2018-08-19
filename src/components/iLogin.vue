@@ -70,6 +70,11 @@ export default {
           this.loginButtonText = '验证失败，请重新填写后再试一次'
           this.loginButtonType = 'danger'
         } else {
+          this.$utils.Store.set('userinfo', {
+            userPhone: this.userPhone,
+            imgCode: this.imgCode,
+            smsCode: this.smsCode
+          })
           // 路由跳转
           this.$router.push({ path: '/dashboard' })
         }

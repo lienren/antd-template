@@ -1,3 +1,11 @@
+/*
+ * @Author: Lienren
+ * @Date: 2018-08-19 10:08:52
+ * @Last Modified by:   Lienren
+ * @Last Modified time: 2018-08-19 10:08:52
+ */
+'use strict'
+
 /* eslint-disable no-undef */
 // 生产/测试环境，使用路由懒加载
 const view =

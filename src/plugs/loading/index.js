@@ -1,3 +1,11 @@
+/*
+ * @Author: Lienren
+ * @Date: 2018-08-19 10:08:33
+ * @Last Modified by:   Lienren
+ * @Last Modified time: 2018-08-19 10:08:33
+ */
+'use strict'
+
 import LoadingComponent from './iLoading.vue'
 
 let $vm

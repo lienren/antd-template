@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     init () {
-
+      console.log('userinfo', this.$utils.Store.get('userinfo'))
     }
   }
 }

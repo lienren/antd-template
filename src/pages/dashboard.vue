@@ -25,7 +25,7 @@ export default {
 
       setTimeout(() => {
         this.$loading.hide()
-      }, 3000)
+      }, 2000)
     }
   }
 }

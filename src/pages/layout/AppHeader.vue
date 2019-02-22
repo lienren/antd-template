@@ -53,15 +53,14 @@ export default {
       line-height: 40px;
     }
     .layout-setting {
-      width: 24px;
-      height: 24px;
-      font-size: 24px;
-      line-height: 24px;
+      width: 18px;
+      height: 18px;
+      font-size: 18px;
+      line-height: 18px;
       position: absolute;
       right: 34px;
       top: 50%;
-      margin-top: -12px;
-      color: #777;
+      margin-top: -9px;
       cursor: pointer;
     }
     .layout-header-user {

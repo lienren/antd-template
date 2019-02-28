@@ -42,6 +42,7 @@
 </template>
 
 <script>
+const dataNavs = require('../../datas/navs.json')
 
 export default {
   components: {},
@@ -58,23 +59,29 @@ export default {
   computed: {},
   created () { },
   beforeDestroy () { },
-  mounted () { },
+  mounted () {
+    // 初始化登录信息
+    this.$store.commit('AUTH_INIT')
+  },
   methods: {
     login () {
       this.loginButtonLoading = true
       this.loginButtonText = '登录权限验证中，请稍后'
 
       setTimeout(() => {
-        if (this.userPhone !== '18652017319') {
+        if (this.userPhone !== 'admin') {
           this.loginButtonLoading = false
           this.loginButtonText = '验证失败，请重新填写后再试一次'
           this.loginButtonType = 'danger'
         } else {
-          this.$utils.Store.set('userinfo', {
+          // 设置登录信息
+          window.$globalHub.$store.commit('SET_AUTH', {
             userPhone: this.userPhone,
             imgCode: this.imgCode,
             smsCode: this.smsCode
           })
+          // 设置用户菜单信息
+          window.$globalHub.$store.commit('SET_NAV', dataNavs)
           // 路由跳转
           this.$router.push({ path: '/dashboard' })
         }

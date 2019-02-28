@@ -4,22 +4,22 @@
       <span>{{version}}</span>
     </div>
     <a-menu theme="dark" mode="inline" :defaultOpenKeys="defaultOpenKeys" :defaultSelectedKeys="defaultSelectedKeys" @select="select">
-      <template v-for="menu in menus">
-        <a-sub-menu v-if="menu.children&&menu.children.length>0" :key="menu.id">
+      <template v-for="nav in navs">
+        <a-sub-menu v-if="nav.children&&nav.children.length>0" :key="nav.id">
           <span slot="title">
-            <a-icon :type="menu.icon" />
-            <span>{{menu.name}}</span>
+            <a-icon :type="nav.icon" />
+            <span>{{nav.name}}</span>
           </span>
-          <a-menu-item v-for="child in menu.children" :key="child.id">{{child.name}}</a-menu-item>
+          <a-menu-item v-for="child in nav.children" :key="child.id">{{child.name}}</a-menu-item>
         </a-sub-menu>
-        <a-menu-item v-else :key="menu.id">
-          <a-icon :type="menu.icon" />
-          <span>{{menu.name}}</span>
+        <a-menu-item v-else :key="nav.id">
+          <a-icon :type="nav.icon" />
+          <span>{{nav.name}}</span>
         </a-menu-item>
       </template>
     </a-menu>
     <div class="trigger-list">
-      <a-icon class="trigger menu-collapsed-switch" :title="menuSwitchText" :type="menuSwitchClassName" @click="collapse" />
+      <a-icon class="trigger menu-collapsed-switch" :title="navSwitchText" :type="navSwitchClassName" @click="collapse" />
       <a-icon class="trigger logout-button" title="安全退出" type="logout" @click="logout" />
     </div>
   </a-layout-sider>
@@ -29,7 +29,7 @@
 
 export default {
   props: {
-    menus: {
+    navs: {
       type: Array
     },
     logoName: {
@@ -66,11 +66,11 @@ export default {
     defaultOpenKeys () {
       let rountKey = this.rountKey
       let openKeys = ''
-      this.menus.forEach((menu) => {
-        if (menu.children && menu.children.length > 0) {
-          openKeys = menu.children.some((child) => {
+      this.navs.forEach((nav) => {
+        if (nav.children && nav.children.length > 0) {
+          openKeys = nav.children.some((child) => {
             return child.id === rountKey
-          }) ? menu.id : ''
+          }) ? nav.id : ''
         }
       })
       return openKeys === '' ? [] : [openKeys]
@@ -78,10 +78,10 @@ export default {
     defaultSelectedKeys () {
       return this.rountKey === '' ? [] : [this.rountKey]
     },
-    menuSwitchText () {
+    navSwitchText () {
       return this.collapsed ? '打开菜单' : '收起菜单'
     },
-    menuSwitchClassName () {
+    navSwitchClassName () {
       return this.collapsed ? 'menu-unfold' : 'menu-fold'
     }
   },

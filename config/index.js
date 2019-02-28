@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/demoApi': {
-        target: 'https://super.51pinzhi.cn/',
+        target: 'http://super.51pinzhi.cn',
         changeOrigin: true,
         pathRewrite: {
           '^/demoApi': ''
@@ -64,7 +64,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/ant-template/',
 
     /**
      * Source Maps

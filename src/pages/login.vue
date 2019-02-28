@@ -1,5 +1,6 @@
 <template>
   <div class="layout-login-main">
+    <vue-particles color="#fff" :particleOpacity="0.7" :particlesNumber="60" shapeType="circle" :particleSize="4" linesColor="#fff" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150" :moveSpeed="2" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push" class="bg-particles"></vue-particles>
     <div class="login-content">
       <i-login></i-login>
     </div>
@@ -35,24 +36,6 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: url('../assets/images/bg.jpeg');
-    background-size: cover;
-
-    &:after {
-      content: '';
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      background: inherit;
-      -webkit-filter: brightness(75%) blur(6px);
-      -moz-filter: brightness(75%) blur(6px);
-      -ms-filter: brightness(75%) blur(6px);
-      -o-filter: brightness(75%) blur(6px);
-      filter: brightness(75%) blur(6px);
-      z-index: 2;
-    }
 
     .login-content {
       flex: 1;
@@ -60,6 +43,16 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .bg-particles {
+      width: 100%;
+      height: 100%;
+      background-image: url('../assets/images/bg.jpg');
+      background-size: cover;
+      position: absolute;
+      left: 0;
+      top: 0;
     }
   }
 </style>

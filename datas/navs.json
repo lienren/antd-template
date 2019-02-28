@@ -1,0 +1,31 @@
+[
+  {
+    "id": "/dashboard",
+    "name": "首页",
+    "icon": "desktop"
+  },
+  {
+    "id": "/lists",
+    "name": "系统管理",
+    "icon": "setting",
+    "children": [
+      {
+        "id": "/managelist",
+        "name": "管理员管理",
+        "purview": ["edit", "delete"]
+      },
+      {
+        "id": "/rolelist",
+        "name": "角色管理"
+      },
+      {
+        "id": "/menulist",
+        "name": "菜单管理"
+      },
+      {
+        "id": "/logs",
+        "name": "日志查看"
+      }
+    ]
+  }
+]

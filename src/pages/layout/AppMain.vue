@@ -23,10 +23,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .app-main {
-    padding: 10px;
+    padding: 20px;
     transition: margin-left 0.28s;
     background: none repeat scroll 0 0 #fff;
     width: 100%;

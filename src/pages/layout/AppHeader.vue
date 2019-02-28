@@ -4,10 +4,16 @@
       <a-breadcrumb-item v-for="(item, index) in crumbs" :key="index">{{item.name}}</a-breadcrumb-item>
     </a-breadcrumb>
     <a-icon type="setting" class="layout-setting" title="点击设置" @click="clickSettingImg" />
-    <a-layout class="layout-header-user" title="点击显示详细" @click="clickHeaderImg">
-      <a-badge dot :count="badgeNumber">
-        <a-avatar icon="user" size="small" style="color: #fff; backgroundColor: #1890ff; cursor: pointer;"></a-avatar>
-      </a-badge>
+    <a-layout class="layout-header-user" title="点击显示详细">
+      <a-dropdown :trigger="['click']">
+        <a-badge dot :count="badgeNumber">
+          <a-avatar icon="user" size="small" style="color: #fff; backgroundColor: #1890ff; cursor: pointer;"></a-avatar>
+        </a-badge>
+        <a-menu slot="overlay" @click="clickDropDown">
+          <a-menu-item key="editPwd">修改密码</a-menu-item>
+          <a-menu-item key="quit">退出</a-menu-item>
+        </a-menu>
+      </a-dropdown>
     </a-layout>
   </a-layout-header>
 </template>
@@ -36,8 +42,8 @@ export default {
     clickSettingImg () {
       this.$emit('on-clicksetting')
     },
-    clickHeaderImg () {
-      this.$emit('on-clickhead')
+    clickDropDown (e) {
+      this.$emit('on-clickdropdown', e)
     }
   }
 }

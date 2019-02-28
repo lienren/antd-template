@@ -1,8 +1,8 @@
 <template>
   <a-layout class="layout-main">
-    <sidebar :navs="navs" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" :collapsed.sync="collapsed" @on-init="menuInit" @on-logout="logout" @on-collapse="menuCollapse" @on-select="navSelect"></sidebar>
+    <sidebar :navs="navs" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" :collapsed.sync="collapsed" @on-init="menuInit" @on-collapse="menuCollapse" @on-select="navSelect"></sidebar>
     <a-layout :style="{ padding:'0 16px', height: '100%', overflow: 'hidden' }">
-      <app-header :crumbs="crumbs" :badgeNumber="badgeNumber" @on-clickhead="clickHead" @on-clicksetting="clickSetting"></app-header>
+      <app-header :crumbs="crumbs" :badgeNumber="badge" @on-clickdropdown="clickDropDown" @on-clicksetting="clickSetting"></app-header>
       <a-layout-content :style="{ height: mainHeight }">
         <app-main></app-main>
       </a-layout-content>
@@ -25,7 +25,7 @@ export default {
       version: 'Beta1.0.3',
       collapsed: false,
       crumbs: [],
-      badgeNumber: 100,
+      badgeNumber: 0,
       cardIsShow: false,
       spinning: true
     }
@@ -39,7 +39,8 @@ export default {
   },
   computed: {
     ...mapState({
-      navs: state => state.auth.navs
+      navs: state => state.auth.navs,
+      badge: state => state.auth.badge
     }),
     mainHeight () {
       // header height:40
@@ -49,23 +50,6 @@ export default {
     }
   },
   methods: {
-    logout () {
-      let $this = this
-      this.$confirm({
-        title: '提示',
-        content: '您正在关闭系统，确认是否正常退出？',
-        okText: '正常退出',
-        cancelText: '取消',
-        onOk () {
-          $this.$store.commit('AUTH_INIT')
-          // 路由跳转
-          $this.$router.push({ path: '/login' })
-        },
-        onCancel () {
-          console.log('cancel!')
-        }
-      })
-    },
     menuInit (data) {
       // 设置面包屑名称
       this.setCrumbs(data.defaultSelectedKeys && data.defaultSelectedKeys.length > 0 ? data.defaultSelectedKeys[0] : '')
@@ -110,8 +94,29 @@ export default {
         })
       }
     },
-    clickHead () {
-      this.$message.success('点击头像!')
+    clickDropDown ({ key }) {
+      let $this = this
+      switch (key) {
+        case 'editPwd':
+          this.$message.success('点击修改密码!')
+          break
+        case 'quit':
+          this.$confirm({
+            title: '提示',
+            content: '您正在关闭系统，确认是否正常退出？',
+            okText: '正常退出',
+            cancelText: '取消',
+            onOk () {
+              $this.$store.commit('AUTH_INIT')
+              // 路由跳转
+              $this.$router.push({ path: '/login' })
+            },
+            onCancel () {
+              console.log('cancel!')
+            }
+          })
+          break
+      }
       // this.cardIsShow = !this.cardIsShow
     },
     clickSetting () {

@@ -20,7 +20,6 @@
     </a-menu>
     <div class="trigger-list">
       <a-icon class="trigger menu-collapsed-switch" :title="navSwitchText" :type="navSwitchClassName" @click="collapse" />
-      <a-icon class="trigger logout-button" title="安全退出" type="logout" @click="logout" />
     </div>
   </a-layout-sider>
 </template>
@@ -99,9 +98,6 @@ export default {
         defaultSelectedKeys: this.defaultSelectedKeys
       })
     },
-    logout () {
-      this.$emit('on-logout')
-    },
     collapse () {
       this.$emit('update:collapsed', !this.collapsed)
       this.$emit('on-collapse', this.collapsed)
@@ -131,11 +127,6 @@ export default {
       &.menu-collapsed-switch {
         position: absolute;
         left: 10px;
-        top: 10px;
-      }
-      &.logout-button {
-        position: absolute;
-        right: 10px;
         top: 10px;
       }
     }

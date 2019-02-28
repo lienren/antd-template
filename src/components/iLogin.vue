@@ -61,7 +61,7 @@ export default {
   beforeDestroy () { },
   mounted () {
     // 初始化登录信息
-    this.$store.commit('AUTH_INIT')
+    // this.$store.commit('AUTH_INIT')
   },
   methods: {
     login () {
@@ -77,6 +77,7 @@ export default {
           // 设置登录信息
           window.$globalHub.$store.commit('SET_AUTH', {
             userPhone: this.userPhone,
+            userName: '超级管理员',
             imgCode: this.imgCode,
             smsCode: this.smsCode
           })

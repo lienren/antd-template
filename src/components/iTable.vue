@@ -2,8 +2,8 @@
   <div>
     <a-button-group v-if="toolbars&&toolbars.length>0" :style="{ marginBottom: '10px' }">
       <template v-for="(item, index) in toolbars">
-        <a-button v-if="item.model === 'button'" :key="index" :type="item.type" :icon="item.icon" :loading="item.loading" @click="item.click(item)">{{item.text}}</a-button>
-        <a-dropdown v-if="item.model === 'dropdown'" :key="index">
+        <a-button v-hasPurview="item.purview" v-if="item.model === 'button'" :key="index" :type="item.type" :icon="item.icon" :loading="item.loading" @click="item.click(item)">{{item.text}}</a-button>
+        <a-dropdown v-hasPurview="item.purview" v-if="item.model === 'dropdown'" :key="index">
           <a-menu slot="overlay" @click="item.click">
             <a-menu-item v-for="menu in item.menus" :key="menu.key">{{menu.text}}</a-menu-item>
           </a-menu>

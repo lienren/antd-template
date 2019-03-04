@@ -3,7 +3,7 @@
     <div class="logo">{{collapsed?shortLogoName:logoName}}
       <span>{{version}}</span>
     </div>
-    <a-menu theme="dark" mode="inline" :defaultOpenKeys="defaultOpenKeys" :defaultSelectedKeys="defaultSelectedKeys" @select="select">
+    <a-menu theme="dark" mode="inline" :openKeys="openKeys" @openChange="onOpenChange" :defaultOpenKeys="defaultOpenKeys" :defaultSelectedKeys="defaultSelectedKeys" @select="select">
       <template v-for="nav in navs">
         <a-sub-menu v-if="nav.children&&nav.children.length>0" :key="nav.id">
           <span slot="title">
@@ -50,7 +50,9 @@ export default {
   },
   components: {},
   data () {
-    return {}
+    return {
+      openKeys: []
+    }
   },
   watch: {
     collapsed (val) {
@@ -104,6 +106,10 @@ export default {
     },
     select (selected) {
       this.$emit('on-select', selected)
+    },
+    onOpenChange (openKeys) {
+      const latestOpenKey = openKeys.find(key => this.openKeys.indexOf(key) === -1)
+      this.openKeys = latestOpenKey ? [latestOpenKey] : []
     }
   }
 }

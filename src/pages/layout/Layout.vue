@@ -1,8 +1,8 @@
 <template>
   <a-layout class="layout-main">
-    <sidebar :navs="navs" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" :collapsed.sync="collapsed" @on-init="menuInit" @on-collapse="menuCollapse" @on-select="navSelect"></sidebar>
+    <sidebar :navs="navs" :logoName="logoName" :shortLogoName="shortLogoName" :version="version" @on-init="menuInit" @on-collapse="menuCollapse" @on-select="navSelect"></sidebar>
     <a-layout :style="{ padding:'0 16px', height: '100%', overflow: 'hidden' }">
-      <app-header :crumbs="crumbs" :badgeNumber="badge" @on-clickdropdown="clickDropDown" @on-clicksetting="clickSetting"></app-header>
+      <app-header :crumbs="crumbs" :badgeNumber="badge" :quickFunList="quickFunList" :dropDownList="headerDropDownList" @on-clickdropdown="clickDropDown"></app-header>
       <a-layout-content :style="{ height: mainHeight }">
         <app-main></app-main>
       </a-layout-content>
@@ -20,14 +20,49 @@ export default {
   name: 'layout',
   data () {
     return {
-      logoName: '管理平台',
-      shortLogoName: '平台',
-      version: 'Beta1.0.3',
-      collapsed: false,
+      logoName: 'Antd Template',
+      shortLogoName: 'Antd',
+      version: 'V1.0',
       crumbs: [],
       badgeNumber: 0,
       cardIsShow: false,
-      spinning: true
+      spinning: true,
+      quickFunList: [
+        {
+          title: '设置',
+          type: 'setting',
+          click: (e) => {
+            this.$message.success(`点击${e.title}`)
+          }
+        }
+      ],
+      headerDropDownList: [{
+        key: 'editPwd',
+        name: '修改密码',
+        click: (e) => {
+          this.$message.success('点击修改密码!')
+        }
+      }, {
+        key: 'quit',
+        name: '退出',
+        click: (e) => {
+          let $this = this
+          this.$confirm({
+            title: '提示',
+            content: '您正在关闭系统，确认是否正常退出？',
+            okText: '正常退出',
+            cancelText: '取消',
+            onOk () {
+              $this.$store.commit('AUTH_INIT')
+              // 路由跳转
+              $this.$router.push({ path: '/login' })
+            },
+            onCancel () {
+              console.log('cancel!')
+            }
+          })
+        }
+      }]
     }
   },
   components: {
@@ -94,33 +129,8 @@ export default {
         })
       }
     },
-    clickDropDown ({ key }) {
-      let $this = this
-      switch (key) {
-        case 'editPwd':
-          this.$message.success('点击修改密码!')
-          break
-        case 'quit':
-          this.$confirm({
-            title: '提示',
-            content: '您正在关闭系统，确认是否正常退出？',
-            okText: '正常退出',
-            cancelText: '取消',
-            onOk () {
-              $this.$store.commit('AUTH_INIT')
-              // 路由跳转
-              $this.$router.push({ path: '/login' })
-            },
-            onCancel () {
-              console.log('cancel!')
-            }
-          })
-          break
-      }
-      // this.cardIsShow = !this.cardIsShow
-    },
-    clickSetting () {
-      this.$message.success('点击设置按钮!')
+    clickDropDown (e) {
+      console.log('clickDropDown:', e)
     }
   }
 }

@@ -4,6 +4,7 @@ import { deepCopy } from '../../assets/utils/tools'
 const state = {
   authInfo: {},
   badge: 0,
+  collapsed: false,
   navs: []
 }
 
@@ -23,6 +24,9 @@ const mutations = {
   },
   SET_NAV: (state, data) => {
     state.navs = data
+  },
+  SET_COLLAPSED: (state, data) => {
+    state.collapsed = data
   }
 }
 

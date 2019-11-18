@@ -22,9 +22,8 @@ export default {
     return {
       logoName: 'Antd Template',
       shortLogoName: 'Antd',
-      version: 'V1.0',
+      version: 'V1.2',
       crumbs: [],
-      badgeNumber: 0,
       cardIsShow: false,
       spinning: true,
       quickFunList: [
@@ -54,6 +53,7 @@ export default {
             cancelText: '取消',
             onOk () {
               $this.$store.commit('AUTH_INIT')
+              $this.$store.commit('EVENT_INIT')
               // 路由跳转
               $this.$router.push({ path: '/login' })
             },
@@ -75,7 +75,11 @@ export default {
   computed: {
     ...mapState({
       navs: state => state.auth.navs,
-      badge: state => state.auth.badge
+      badge: state => {
+        return state.event.events.filter(f => {
+          return f && !f.isRead
+        }).length
+      }
     }),
     mainHeight () {
       // header height:40

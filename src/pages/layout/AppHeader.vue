@@ -7,19 +7,35 @@
       <a-icon :key="index" :type="item.type" class="layout-quickfun" :style="{right: quickFunStyleRight(index)}" :title="item.title" @click="clickQuickFun(item)" />
     </template>
     <a-layout class="layout-header-user" title="点击显示详细">
-      <a-dropdown :trigger="['click']">
-        <a-badge dot :count="badgeNumber">
-          <a-avatar icon="user" size="small" style="color: #fff; backgroundColor: #1890ff; cursor: pointer;"></a-avatar>
-        </a-badge>
-        <a-menu slot="overlay" @click="clickDropDown">
-          <a-menu-item v-for="item in dropDownList" :key="item.key">{{item.name}}</a-menu-item>
-        </a-menu>
-      </a-dropdown>
+      <a-badge dot :count="badgeNumber">
+        <a-avatar icon="user" size="small" style="color: #fff; backgroundColor: #1890ff; cursor: pointer;" @click="openUserDrawer"></a-avatar>
+      </a-badge>
     </a-layout>
+    <a-drawer placement="right" @close="closeUserDrawer" :visible="visibleUserDrawer">
+      <div slot="title">
+        <div style="height:40px;">
+          <div style="float:left;">
+            <a-avatar icon="user" style="color: #fff; backgroundColor: #1890ff;"></a-avatar>
+          </div>
+          <div style="float:left;">
+            <span>{{authInfo.userName}}</span>
+          </div>
+        </div>
+      </div>
+      <a-list itemLayout="horizontal" :dataSource="events">
+        <a-list-item slot="renderItem" slot-scope="item, index">
+          <a-list-item-meta :description="item.time" @click="item.click(item)">
+            <div slot="title">{{item.title}}</div>
+            <a-avatar :icon="item.icon" slot="avatar" :style="{backgroundColor: '#faad14', verticalAlign: 'middle'}">{{!item.icon&&item.sender&&item.sender.length>0?item.sender:'未知'}}</a-avatar>
+          </a-list-item-meta>
+        </a-list-item>
+      </a-list>
+    </a-drawer>
   </a-layout-header>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -39,13 +55,27 @@ export default {
   },
   components: {},
   data () {
-    return {}
+    return {
+      visibleUserDrawer: false
+    }
   },
-  computed: { },
+  computed: {
+    ...mapState({
+      authInfo: state => state.auth.authInfo,
+      events: state => state.event.events
+    })
+  },
   created () { },
   beforeDestroy () { },
   mounted () { },
   methods: {
+    openUserDrawer () {
+      this.visibleUserDrawer = true
+      this.$store.commit('SET_EVENT_READALL')
+    },
+    closeUserDrawer () {
+      this.visibleUserDrawer = false
+    },
     clickDropDown (e) {
       if (this.dropDownList) {
         let dropDownMenu = this.dropDownList.find(d => {
